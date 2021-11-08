@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="ThemeBucket">
+  <link rel="shortcut icon" href="#" type="image/png">
+
+  <title>video gallery</title>
+
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
+
+  <script th:src="@{/js/html5shiv.js}"></script>
+  <script th:src="@{/js/respond.min.js}"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <![endif]-->
+</head>
+
+<body class="sticky-header left-side-collapsed">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a th:href="@{/index}"><img src="images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a th:href="@{/index}"><img src="images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+
+        <div class="left-side-inner">
+
+            <!-- visible to small devices only -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" th:src="${session.user.faceImage}" class="media-object"/>
+                    <div class="media-body">
+                        <h4><a href="#">[[${session.user.getName()}]]</a></h4>
+                        <span>"something else..."</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">用户信息</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                </ul>
+            </div>
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a th:href="@{/index}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                <li class="menu-list nav-active"><a href=""><i class="fa fa-laptop"></i> <span>Layouts</span></a>
+                    <ul class="sub-menu-list">
+                        <li ><a th:href="@{/layout/blank}"> Blank Page</a></li>
+                        <li><a th:href="@{/layout/boxed}"> Boxed Page</a></li>
+                        <li class="active"><a th:href="@{/layout/left}"> Sidebar Video Gallery</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>Data Tables</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/table/basic}"> Basic Table</a></li>
+                        <li><a th:href="@{/table/dynamic}"> Advanced Table</a></li>
+                        <li><a th:href="@{/table/editable}"> Edit Table</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>Extra Pages</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/extra/profile}"> Profile</a></li>
+                        <li><a th:href="@{/extra/directory}"> Directory </a></li>
+                        <li><a th:href="@{/extra/404}"> 404 Error</a></li>
+                        <li><a th:href="@{/extra/500}"> 500 Error</a></li>
+                        <li><a th:href="@{/login}"> Registration Page</a></li>
+                        <li><a th:href="@{/extra/lock}"> Lockscreen </a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/login}"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+        <!--toggle button start-->
+        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+        <!--toggle button end-->
+
+        <!--notification menu start -->
+        <div class="menu-right">
+            <ul class="notification-menu">
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img th:src="${session.user.faceImage}" alt="user's face image" />
+                        [[${session.user.getName()}]]
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li><a href="#"><i class="fa fa-user"></i>  Profile</a></li>
+                        <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
+                        <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                Media Gallery
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">首 页</a>
+                </li>
+                <li class="active"> Video Gallery </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            视频信息管理
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+
+                            <ul id="filters" class="media-filter">
+                                <li><a href="#" data-filter="*"> All</a></li>
+                                <li><a href="#" data-filter=".images">Images</a></li>
+                                <li><a href="#" data-filter=".video">Video</a></li>
+                            </ul>
+
+                            <div id="gallery" class="media-gal">
+                                <div class=" video item "  th:each="video:${videos}">
+                                    <video th:src="${video.videoPath}" controls="controls" th:width="${video.videoWidth}+'%'" th:height="${video.videoHeight}+'%'">
+                                        您的浏览器不支持video标签...
+                                    </video>
+                                    <p href="#myModal" data-toggle="modal">详细信息 </p>
+                                </div>
+                                <div class=" images item "  th:each="video:${videos}">
+                                    <a>
+                                        <img th:src="${video.coverPath}" alt=""  th:width="${video.videoWidth}+'%'" th:height="${video.videoHeight}+'%'"/>
+                                    </a>
+                                    <p href="#myModal" data-toggle="modal">图片信息 </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-center clearfix">
+                                <ul class="pagination">
+                                    <li><a href="#">«</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">视频信息管理</h4>
+                                        </div>
+
+                                        <div class="modal-body row" th:each="video:${videos}">
+
+                                            <div class="col-md-5 img-modal" >
+                                                <img th:src="${video.coverPath}" alt="cover image">
+                                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit Image</a>
+                                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-eye"></i> View Full Size</a>
+
+                                                <p class="mtop10"><strong>File Name:</strong><span th:text="${video.videoDesc}"></span></p>
+                                                <p><strong>File Type:</strong> mp4</p>
+                                                <p><strong>Resolution:</strong><span th:text="${video.videoWidth}+'x'+${video.videoHeight}"></span></p>
+                                                <p><strong>Uploaded By(user id):</strong> <a href="#" th:text="${video.userId}"></a></p>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="form-group">
+                                                    <label> Name</label>
+                                                    <input id="name" th:value="${video.videoDesc}" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Tittle Text</label>
+                                                    <input id="title" value="awesome video" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Description</label>
+                                                    <textarea rows="2" class="form-control"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Link URL</label>
+                                                    <input id="link" th:value="${video.videoPath}" class="form-control">
+                                                </div>
+                                                <div class="pull-right">
+                                                    <button class="btn btn-danger btn-sm" type="button">Delete</button>
+                                                    <button class="btn btn-success btn-sm" type="button">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- modal -->
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+        <footer class="sticky-footer">
+            Footer contents goes here
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+<script th:src="@{/js/jquery-ui-1.9.2.custom.min.js}"></script>
+<script th:src="@{/js/jquery-migrate-1.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/modernizr.min.js}"></script>
+<script th:src="@{/js/jquery.nicescroll.js}"></script>
+
+<!--common scripts for all pages-->
+<script th:src="@{/js/scripts.js}"></script>
+
+<script>
+    $(function() {
+        var $container = $('#gallery');
+        $container.isotope({
+            itemSelector: '.item',
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+        });
+
+        // filter items when filter link is clicked
+        $('#filters a').click(function() {
+            var selector = $(this).attr('data-filter');
+            $container.isotope({filter: selector});
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
