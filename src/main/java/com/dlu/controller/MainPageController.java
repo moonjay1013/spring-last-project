@@ -63,7 +63,12 @@ public class MainPageController {
     }
 
     @RequestMapping(value = "/table/dynamic")
-    public String dynamic(){ return "dynamic_table"; }
+    public String dynamic(Model model){
+        List<Video> videoList = videoService.findAll();
+        List<Bgm> bgmList = bgmService.findAll();
+        model.addAttribute("videos",videoList);
+        model.addAttribute("bgms",bgmList);
+        return "dynamic_table"; }
 
     @RequestMapping(value = "/table/editable")
     public String editable(Model model){
@@ -74,9 +79,6 @@ public class MainPageController {
 
     @RequestMapping(value = "/extra/profile")
     public String profile(){ return "profile"; }
-
-    @RequestMapping(value = "/extra/directory")
-    public String directory(){ return "directory"; }
 
     @RequestMapping(value = "/extra/404")
     public String notFound(){ return "error/404"; }

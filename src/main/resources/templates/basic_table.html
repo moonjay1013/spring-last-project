@@ -7,7 +7,7 @@
   <meta name="author" content="ThemeBucket">
   <link rel="shortcut icon" href="#" type="image/png">
 
-  <title>Basic Table</title>
+  <title>基本表</title>
 
   <link th:href="@{/css/style.css}" rel="stylesheet">
   <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
@@ -56,31 +56,30 @@
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
                 <li><a th:href="@{/index}"><i class="fa fa-home"></i> <span>首 页</span></a></li>
-                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>布 局</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>功能页</span></a>
                     <ul class="sub-menu-list">
-                        <li><a th:href="@{/layout/blank}"> Blank Page</a></li>
+                        <li><a th:href="@{/layout/blank}"> Bgm管理</a></li>
                         <li><a th:href="@{/layout/boxed}"> Boxed Page</a></li>
-                        <li><a th:href="@{/layout/left}"> Sidebar Video Gallery</a></li>
+                        <li><a th:href="@{/layout/left}"> 视频信息库</a></li>
                     </ul>
                 </li>
-                <li class="menu-list nav-active"><a href="#"><i class="fa fa-th-list"></i> <span>Data Tables</span></a>
+                <li class="menu-list nav-active"><a href="#"><i class="fa fa-th-list"></i> <span>数据表</span></a>
                     <ul class="sub-menu-list">
-                        <li class="active"><a th:href="@{/table/basic}"> Basic Table</a></li>
-                        <li><a th:href="@{/table/dynamic}"> Advanced Table</a></li>
+                        <li class="active"><a th:href="@{/table/basic}"> 基本表</a></li>
+                        <li><a th:href="@{/table/dynamic}"> 动态表</a></li>
                         <li><a th:href="@{/table/editable}"> Edit Table</a></li>
                     </ul>
                 </li>
-                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>Extra Pages</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>附加页</span></a>
                     <ul class="sub-menu-list">
                         <li><a th:href="@{/extra/profile}"> Profile</a></li>
-                        <li><a th:href="@{/extra/directory}"> Directory </a></li>
                         <li><a th:href="@{/extra/404}"> 404 Error</a></li>
                         <li><a th:href="@{/extra/500}"> 500 Error</a></li>
                         <li><a th:href="@{/login}"> Registration Page</a></li>
                         <li><a th:href="@{/extra/lock}"> Lockscreen </a></li>
                     </ul>
                 </li>
-                <li><a th:href="@{/login}"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
+                <li><a th:href="@{/login}"><i class="fa fa-sign-in"></i> <span>登陆页</span></a></li>
 
             </ul>
             <!--sidebar nav end-->
@@ -217,103 +216,7 @@
                     </section>
                 </div>
             </div>
-            <div class="row">
-            <div class="col-sm-6">
-                <section class="panel">
-                    <header class="panel-heading no-border">
-                        Border Table
-                            <span class="tools pull-right">
-                                <a href="javascript:;" class="fa fa-chevron-down"></a>
-                                <a href="javascript:;" class="fa fa-times"></a>
-                             </span>
-                    </header>
-                    <div class="panel-body">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td rowspan="2">1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@TwBootstrap</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </div>
-            <div class="col-sm-6">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Hover Table
-                            <span class="tools pull-right">
-                                <a href="javascript:;" class="fa fa-chevron-down"></a>
-                                <a href="javascript:;" class="fa fa-times"></a>
-                             </span>
-                    </header>
-                    <div class="panel-body">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Jane Doe</td>
-                                <td>Mosa</td>
-                                <td>@twitter</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </div>
-        </div>
+<!--            这里 添加一个row 可以用来增加表格显示信息用-->
             <div class="row">
                 <div class="col-sm-12">
                     <section class="panel">
@@ -368,7 +271,7 @@
 
         <!--footer section start-->
         <footer>
-            2021 &copy; AdminEx by <a href="http://www.mycodes.net/" target="_blank">dlu admin</a>
+            2021 &copy; Developed by <a href="http://www.mycodes.net/" target="_blank">dlu admin</a>
         </footer>
         <!--footer section end-->
 
