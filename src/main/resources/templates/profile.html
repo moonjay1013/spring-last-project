@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <h5 class="left-nav-title">用户信息</h5>
+                <h5 class="left-nav-title">user info</h5>
                 <ul class="nav nav-pills nav-stacked custom-nav">
                     <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
                     <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
@@ -140,7 +140,7 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="profile-pic text-center">
-                                        <img alt="" src="images/photos/user1.png">
+                                        <img alt="" th:src="${session.user.faceImage}">
                                     </div>
                                 </div>
                             </div>
@@ -150,24 +150,12 @@
                                 <div class="panel-body">
                                     <ul class="p-info">
                                         <li>
-                                            <div class="title">Gender</div>
-                                            <div class="desk">Male</div>
+                                            <div class="title">用户名：</div>
+                                            <div class="desk" th:text="${session.user.name}"></div>
                                         </li>
                                         <li>
-                                            <div class="title">Founder</div>
-                                            <div class="desk">ABC Inc.</div>
-                                        </li>
-                                        <li>
-                                            <div class="title">Education</div>
-                                            <div class="desk">BSC. in CSE</div>
-                                        </li>
-                                        <li>
-                                            <div class="title">Project Done</div>
-                                            <div class="desk">50+</div>
-                                        </li>
-                                        <li>
-                                            <div class="title">Skills</div>
-                                            <div class="desk">HTML, CSS, JavaScript.</div>
+                                            <div class="title">昵 称：</div>
+                                            <div class="desk" th:text="${session.user.nickname}"></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -175,37 +163,31 @@
                         </div>
                         <div class="col-md-12">
                             <div class="panel">
-                                <div class="panel-body p-states">
-                                    <div class="summary pull-left">
-                                        <h4>Total <span>Sales</span></h4>
-                                        <span>Monthly Summary</span>
-                                        <h3>$ 5,600</h3>
+                                <div class="panel-body p-states" align="center">
+                                    <div class="summary">
+                                        <h4>关注的 <span>博主</span></h4>
+                                        <h3 th:text="${session.user.followCounts}"></h3>
                                     </div>
-                                    <div id="expense" class="chart-bar"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="panel">
-                                <div class="panel-body p-states green-box">
-                                    <div class="summary pull-left">
-                                        <h4>Product <span>refund</span></h4>
-                                        <span>Monthly Summary</span>
-                                        <h3>160</h3>
+                                <div class="panel-body p-states green-box" align="center">
+                                    <div class="summary">
+                                        <h4>收到的 <span>赞</span></h4>
+                                        <h3 th:text="${session.user.receiveLikes}"></h3>
                                     </div>
-                                    <div id="pro-refund" class="chart-bar"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="panel">
-                                <div class="panel-body p-states">
-                                    <div class="summary pull-left">
-                                        <h4>Total <span>Earning</span></h4>
-                                        <span>Monthly Summary</span>
-                                        <h3>$ 51,2600</h3>
+                                <div class="panel-body p-states" align="center">
+                                    <div class="summary">
+                                        <h4>粉丝数 <span>Fans</span></h4>
+                                        <h3 th:text="${session.user.fansCounts}"></h3>
                                     </div>
-                                    <div id="expense2" class="chart-bar"></div>
                                 </div>
                             </div>
                         </div>
@@ -381,10 +363,6 @@
 <script th:src="@{/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/modernizr.min.js}"></script>
 <script th:src="@{/js/jquery.nicescroll.js}"></script>
-
-<!--Sparkline Chart-->
-<script th:src="@{/js/sparkline/jquery.sparkline.js}"></script>
-<script th:src="@{/js/sparkline/sparkline-init.js}"></script>
 
 <!--common scripts for all pages-->
 <script th:src="@{/js/scripts.js}"></script>
