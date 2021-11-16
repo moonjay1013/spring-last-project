@@ -28,11 +28,11 @@
 
         <!--logo and iconic logo start-->
         <div class="logo">
-            <a th:href="@{/index}"><img src="images/logo.png" alt=""></a>
+            <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
         </div>
 
         <div class="logo-icon text-center">
-            <a th:href="@{/index}"><img src="images/logo_icon.png" alt=""></a>
+            <a th:href="@{/index}"><img th:src="@{/images/logo_icon.png}" alt=""></a>
         </div>
         <!--logo and iconic logo end-->
 
@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <h5 class="left-nav-title">user info</h5>
+                <h5 class="left-nav-title">用户信息</h5>
                 <ul class="nav nav-pills nav-stacked custom-nav">
                     <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
                     <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
@@ -63,7 +63,7 @@
                 <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>功能页</span></a>
                     <ul class="sub-menu-list">
                         <li><a th:href="@{/layout/blank}"> Bgm管理</a></li>
-                        <li><a th:href="@{/layout/boxed}"> Boxed Page</a></li>
+                        <li><a th:href="@{/layout/boxed}"> 添加video</a></li>
                         <li><a th:href="@{/layout/left}"> 视频信息库</a></li>
                     </ul>
                 </li>
@@ -199,10 +199,9 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="profile-desk">
-                                        <h1>john doe</h1>
-                                        <span class="designation">PRODUCT DESIGNER (UX / UI / Visual Interaction)</span>
+                                        <h1 th:text="${session.user.name}"></h1>
                                         <p>
-                                            I have 10 years of experience designing for the web, and specialize in the areas of user interface design, interaction design, visual design and prototyping. I’ve worked with notable startups including Pearl Street Software.
+                                            这个人很懒，什么都没有写...
                                         </p>
                                         <a class="btn p-follow-btn pull-left" href="#"> <i class="fa fa-check"></i> Following</a>
 
@@ -236,20 +235,6 @@
                                 </form>
                                 <footer class="panel-footer">
                                     <button class="btn btn-post pull-right">Post</button>
-                                    <ul class="nav nav-pills p-option">
-                                        <li>
-                                            <a href="#"><i class="fa fa-user"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-camera"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa  fa-location-arrow"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-meh-o"></i></a>
-                                        </li>
-                                    </ul>
                                 </footer>
                             </div>
                         </div>

@@ -16,7 +16,7 @@ public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id")
     private Integer userId;
     @Column(name = "audio_id")
     private Integer audioId;
@@ -38,7 +38,7 @@ public class Video {
     private Integer status;
     @ApiModelProperty(value = "创建时间（datetime）")
     @Column(name = "create_time", nullable = false)
-    private Date crateTime;
+    private String crateTime;
     // 直接将java.util.Date存入数据库是不行的！
 
 
@@ -130,11 +130,11 @@ public class Video {
         this.status = status;
     }
 
-    public Date getCrateTime() {
+    public String getCrateTime() {
         return crateTime;
     }
 
-    public void setCrateTime(Date crateTime) {
+    public void setCrateTime(String crateTime) {
         this.crateTime = crateTime;
     }
 }

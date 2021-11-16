@@ -17,4 +17,9 @@ public class VideoServiceImpl implements VideoService {
     public List<Video> findAll() {
         return videoDao.findAll();
     }
+
+    @Override
+    public void addVideo(Video video) {
+        videoDao.save(video);
+    }
 }

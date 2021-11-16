@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,13 +38,26 @@ public class MainPageController {
     }
 
     @PostMapping("/addBgm")
-    public String add(@ModelAttribute Bgm bgm){
+    public String addBgm(@ModelAttribute Bgm bgm){
         bgmService.addBgm(bgm);
         return "redirect:/table/basic";
     }
 
     @RequestMapping(value = "/layout/boxed")
-    public String boxed(){ return "boxed_view"; }
+    public String boxed(Model model,Video video){
+        model.addAttribute("video",video);
+        return "boxed_view";
+    }
+
+    @PostMapping("/addVideo")
+    public String addVideo(@ModelAttribute Video video){
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(dt);
+        video.setCrateTime(currentTime);
+        videoService.addVideo(video);
+        return "redirect:/table/basic";
+    }
 
     @RequestMapping(value = "/layout/left")
     public String left(Model model){

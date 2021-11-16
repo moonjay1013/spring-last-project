@@ -27,11 +27,11 @@
 
         <!--logo and iconic logo start-->
         <div class="logo">
-            <a th:href="@{/index}"><img src="images/logo.png" alt=""></a>
+            <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
         </div>
 
         <div class="logo-icon text-center">
-            <a th:href="@{/index}"><img src="images/logo_icon.png" alt=""></a>
+            <a th:href="@{/index}"><img th:src="@{/images/logo_icon.png}" alt=""></a>
         </div>
         <!--logo and iconic logo end-->
 
@@ -50,7 +50,7 @@
 
                 <h5 class="left-nav-title">用户信息</h5>
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                    <li><a th:href="@{/extra/profile}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
                     <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
                     <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
                 </ul>
@@ -62,7 +62,7 @@
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-laptop"></i> <span>功能页</span></a>
                     <ul class="sub-menu-list">
                         <li ><a th:href="@{/layout/blank}"> Bgm管理</a></li>
-                        <li><a th:href="@{/layout/boxed}"> Boxed Page</a></li>
+                        <li><a th:href="@{/layout/boxed}"> 添加video</a></li>
                         <li class="active"><a th:href="@{/layout/left}"> 视频信息库</a></li>
                     </ul>
                 </li>
@@ -110,7 +110,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                        <li><a href="#"><i class="fa fa-user"></i>  Profile</a></li>
+                        <li><a th:href="@{/extra/profile}"><i class="fa fa-user"></i>  Profile</a></li>
                         <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
                         <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
                     </ul>
