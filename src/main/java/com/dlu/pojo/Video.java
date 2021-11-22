@@ -24,7 +24,7 @@ public class Video {
     private String videoDesc;
     @Column(name = "video_path", nullable = false)
     private String videoPath;
-    @Column(name = "user_seconds", precision = 6, scale = 2)
+    @Column(name = "video_seconds", precision = 6, scale = 2)
     /** precision和scale属性只在BigDecimal类型中有效*/
     private Float videoSeconds;
     @Column(name = "video_width")

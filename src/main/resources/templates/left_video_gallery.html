@@ -164,12 +164,6 @@
                                     </video>
                                     <p href="#myModal" data-toggle="modal">详细信息 </p>
                                 </div>
-                                <div class=" images item "  th:each="video:${videos}">
-                                    <a>
-                                        <img th:src="${video.coverPath}" alt=""  th:width="${video.videoWidth}+'%'" th:height="${video.videoHeight}+'%'"/>
-                                    </a>
-                                    <p href="#myModal" data-toggle="modal">图片信息 </p>
-                                </div>
                             </div>
 
                             <div class="col-md-12 text-center clearfix">
@@ -197,29 +191,24 @@
 
                                             <div class="col-md-5 img-modal" >
                                                 <img th:src="${video.coverPath}" alt="cover image">
-                                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit Image</a>
-                                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-eye"></i> View Full Size</a>
-
-                                                <p class="mtop10"><strong>File Name:</strong><span th:text="${video.videoDesc}"></span></p>
-                                                <p><strong>File Type:</strong> mp4</p>
-                                                <p><strong>Resolution:</strong><span th:text="${video.videoWidth}+'x'+${video.videoHeight}"></span></p>
-                                                <p><strong>Uploaded By(user id):</strong> <a href="#" th:text="${video.userId}"></a></p>
+                                                <p><strong>文件类型:</strong> mp4</p>
+                                                <p><strong>尺 寸:</strong><span th:text="${video.videoWidth}+'x'+${video.videoHeight}"></span></p>
+                                                <p><strong>上传者(user id):</strong> <a th:text="${video.userId}"></a></p>
+                                                <p><strong>上传时间:</strong> <a th:text="${video.crateTime}"></a></p>
                                             </div>
                                             <div class="col-md-7">
+                                                <p class="mtop10"><strong>bgm—id:</strong><span th:text="${video.audioId}"></span></p>
+                                                <p><strong>状态码:</strong> <a th:text="${video.status}"></a></p>
                                                 <div class="form-group">
-                                                    <label> Name</label>
-                                                    <input id="name" th:value="${video.videoDesc}" class="form-control">
+                                                    <label> 视频信息</label>
+                                                    <textarea rows="2" class="form-control" th:value="${video.videoDesc}"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> Tittle Text</label>
-                                                    <input id="title" value="awesome video" class="form-control">
+                                                    <label> 封面路径</label>
+                                                    <input id="cover" th:value="${video.coverPath}" class="form-control">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> Description</label>
-                                                    <textarea rows="2" class="form-control"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label> Link URL</label>
+                                                    <label> 视频路径</label>
                                                     <input id="link" th:value="${video.videoPath}" class="form-control">
                                                 </div>
                                                 <div class="pull-right">

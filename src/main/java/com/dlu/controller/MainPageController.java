@@ -54,8 +54,12 @@ public class MainPageController {
         Date dt = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = sdf.format(dt);
+//        视频的默认创建时间为当前的日期，视频的长、宽默认为100
         video.setCrateTime(currentTime);
+        video.setVideoWidth(100);
+        video.setVideoHeight(100);
         videoService.addVideo(video);
+        // 新上传的视频点赞数为0，状态默认为1
         return "redirect:/table/basic";
     }
 
