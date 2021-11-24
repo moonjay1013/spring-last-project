@@ -201,7 +201,7 @@
                                                 <p><strong>状态码:</strong> <a th:text="${video.status}"></a></p>
                                                 <div class="form-group">
                                                     <label> 视频信息</label>
-                                                    <textarea rows="2" class="form-control" th:value="${video.videoDesc}"></textarea>
+                                                    <input id="info" class="form-control" th:value="${video.videoDesc}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label> 封面路径</label>
@@ -212,8 +212,8 @@
                                                     <input id="link" th:value="${video.videoPath}" class="form-control">
                                                 </div>
                                                 <div class="pull-right">
-                                                    <button class="btn btn-danger btn-sm" type="button">Delete</button>
-                                                    <button class="btn btn-success btn-sm" type="button">Save changes</button>
+                                                    <button class="btn btn-danger btn-sm" type="button"><a th:href="@{/del(id=${video.id})}" style="text-decoration: none; color: white">删 除</a></button>
+                                                    <button class="btn btn-success btn-sm" type="button"><a th:href="@{/update(videoPath=${video.videoPath},id=${video.id})}" style="text-decoration: none; color: white"> save changes</a></button>
                                                 </div>
                                             </div>
                                         </div>

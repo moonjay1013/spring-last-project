@@ -4,6 +4,8 @@ import com.dlu.dao.VideoDao;
 import com.dlu.pojo.Video;
 import com.dlu.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +23,16 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public void addVideo(Video video) {
         videoDao.save(video);
+    }
+
+    @Override
+    public void deleteVideo(Integer id) {
+        Video video = videoDao.getById(id);
+        videoDao.delete(video);
+    }
+
+    @Override
+    public void updateVideo(String videoPath,Integer id) {
+        videoDao.updateById(videoPath,id);
     }
 }

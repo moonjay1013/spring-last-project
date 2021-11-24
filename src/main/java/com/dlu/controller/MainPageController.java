@@ -70,6 +70,18 @@ public class MainPageController {
         return "left_video_gallery";
     }
 
+    @RequestMapping("/del")
+    public String del(Video video){
+        videoService.deleteVideo(video.getId());
+        return "redirect:/layout/left";
+    }
+
+    @RequestMapping("/update")
+    public String update(Video video){
+        videoService.updateVideo(video.getVideoPath(),video.getId());
+        return "redirect:/layout/left";
+    }
+
     @RequestMapping(value = "/table/basic")
     public String basic(Model model){
         List<User> userList = userService.findAll();

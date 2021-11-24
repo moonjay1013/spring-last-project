@@ -8,4 +8,8 @@ public interface VideoService {
     List<Video> findAll();
 
     void addVideo(Video video);
+
+    void deleteVideo(Integer id);
+
+    void updateVideo(String videoPath,Integer id);
 }
