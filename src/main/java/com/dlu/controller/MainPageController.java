@@ -54,10 +54,19 @@ public class MainPageController {
         Date dt = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = sdf.format(dt);
+//        新加入的视频一些默认值--设置video初始状态
 //        视频的默认创建时间为当前的日期，视频的长、宽默认为100
+//        点赞数默认为0,状态码默认为0
+        video.setStatus(0);
+        video.setLikeCounts(0L);
         video.setCrateTime(currentTime);
         video.setVideoWidth(100);
         video.setVideoHeight(100);
+        // 获取当前选择文件的path -- 正确格式为"/videos/..."，需要修改
+        String vp = video.getVideoPath();
+        String newPath = "/videos/"+vp;
+        video.setVideoPath(newPath);
+
         videoService.addVideo(video);
         // 新上传的视频点赞数为0，状态默认为1
         return "redirect:/table/basic";
@@ -78,6 +87,11 @@ public class MainPageController {
 
     @RequestMapping("/update")
     public String update(Video video){
+        // 视频的更新 封面、视频路径功能
+        String path = video.getVideoPath();
+        System.out.println(path);
+        video.setVideoPath(path);
+        System.out.println(video.getId());
         videoService.updateVideo(video.getVideoPath(),video.getId());
         return "redirect:/layout/left";
     }

@@ -190,30 +190,31 @@
                                         <div class="modal-body row" th:each="video:${videos}">
 
                                             <div class="col-md-5 img-modal" >
-                                                <img th:src="${video.coverPath}" alt="cover image">
+                                                <img th:src="${video.coverPath}" width="100px" height="200px"  alt="cover image">
                                                 <p><strong>文件类型:</strong> mp4</p>
                                                 <p><strong>尺 寸:</strong><span th:text="${video.videoWidth}+'x'+${video.videoHeight}"></span></p>
                                                 <p><strong>上传者(user id):</strong> <a th:text="${video.userId}"></a></p>
                                                 <p><strong>上传时间:</strong> <a th:text="${video.crateTime}"></a></p>
                                             </div>
                                             <div class="col-md-7">
-                                                <p class="mtop10"><strong>bgm—id:</strong><span th:text="${video.audioId}"></span></p>
+                                                <p class="mtop10"><strong>bgm编号:</strong><span th:text="${video.audioId}"></span></p>
                                                 <p><strong>状态码:</strong> <a th:text="${video.status}"></a></p>
                                                 <div class="form-group">
                                                     <label> 视频信息</label>
-                                                    <input id="info" class="form-control" th:value="${video.videoDesc}">
+                                                    <input id="info" class="form-control" th:placeholder="${video.videoDesc}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label> 封面路径</label>
-                                                    <input id="cover" th:value="${video.coverPath}" class="form-control">
+                                                    <input id="cover" th:placeholder="${video.coverPath}" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label> 视频路径</label>
-                                                    <input id="link" th:value="${video.videoPath}" class="form-control">
+                                                    <input id="link" th:placeholder="${video.videoPath}" class="form-control">
                                                 </div>
+                                                <input id="vId" th:value="${video.id}" type="hidden">
                                                 <div class="pull-right">
                                                     <button class="btn btn-danger btn-sm" type="button"><a th:href="@{/del(id=${video.id})}" style="text-decoration: none; color: white">删 除</a></button>
-                                                    <button class="btn btn-success btn-sm" type="button"><a th:href="@{/update(videoPath=${video.videoPath},id=${video.id})}" style="text-decoration: none; color: white"> save changes</a></button>
+                                                    <button id="update" class="btn btn-success btn-sm" type="button"><a style="text-decoration: none; color: white">save changes</a></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -254,22 +255,43 @@
 
 <script>
     $(function() {
-        var $container = $('#gallery');
-        $container.isotope({
-            itemSelector: '.item',
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
+        $("#update").click(function(){
+            // debugger
+            var coverPath = $("#cover").val();  // 获取input标签的值
+            var videoPath = $("#link").val();
+            var videoDesc = $("#info").val();
+            var id = $("#vId").val();
+            var url = "/update?videoPath="+videoPath+"&id="+id
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+            // $.ajax({
+            //     url: "/update",
+            //     data: {coverPath: coverPath, videoPath: videoPath, videoDesc: videoDesc, id:id},
+            //     type: "POST",
+            //     // console.log("111"),
+            //     dataType: "json",
+            //     success: function(data) {
+            //         data = jQuery.parseJSON(data);  //dataType指明了返回数据为json类型，故不需要再反序列化
+            //         console.log("111")
+            //         window.location.replace("/layout/left")
+            //         // window.alert("更新成功！")
+            //
+            //     },
+            //     fail: function (){
+            //         window.alert("更新失败！")
+            // }
+            // });
         });
-
-        // filter items when filter link is clicked
-        $('#filters a').click(function() {
-            var selector = $(this).attr('data-filter');
-            $container.isotope({filter: selector});
-            return false;
-        });
+        // var $container = $('#gallery');
+        // $container.isotope({
+        //     itemSelector: '.item',
+        //     animationOptions: {
+        //         duration: 750,
+        //         easing: 'linear',
+        //         queue: false
+        //     }
+        // });
     });
 </script>
 </body>
