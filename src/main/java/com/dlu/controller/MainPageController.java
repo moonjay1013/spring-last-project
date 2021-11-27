@@ -88,8 +88,6 @@ public class MainPageController {
     @RequestMapping("/update")
     public String update(Video video){
         // 视频的更新 封面、视频路径功能
-        String path = video.getVideoPath();
-        System.out.println(path);
         videoService.updateVideo(video.getVideoPath(),video.getCoverPath(),video.getId());
         return "redirect:/layout/left";
     }
