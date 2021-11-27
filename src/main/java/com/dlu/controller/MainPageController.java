@@ -90,9 +90,7 @@ public class MainPageController {
         // 视频的更新 封面、视频路径功能
         String path = video.getVideoPath();
         System.out.println(path);
-        video.setVideoPath(path);
-        System.out.println(video.getId());
-        videoService.updateVideo(video.getVideoPath(),video.getId());
+        videoService.updateVideo(video.getVideoPath(),video.getCoverPath(),video.getId());
         return "redirect:/layout/left";
     }
 
