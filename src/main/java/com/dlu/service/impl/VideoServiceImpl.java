@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service("VideoService")
@@ -34,5 +35,10 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public void updateVideo(String videoPath, String coverPath, String videoDesc, Integer id) {
         videoDao.updateById(videoPath,coverPath,videoDesc,id);
+    }
+
+    @Override
+    public List<Video> findAllById(Integer id) {
+        return videoDao.findAllByUserId(id);
     }
 }

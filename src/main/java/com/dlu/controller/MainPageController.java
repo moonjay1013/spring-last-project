@@ -8,12 +8,12 @@ import com.dlu.service.UserService;
 import com.dlu.service.VideoService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -68,7 +68,7 @@ public class MainPageController {
         video.setVideoPath(newV);
         String cp = video.getCoverPath();
         String newC = "/videos/"+cp;
-        video.setVideoPath(newC);
+        video.setCoverPath(newC);
 
         videoService.addVideo(video);
         // 新上传的视频点赞数为0，状态默认为1
@@ -121,8 +121,13 @@ public class MainPageController {
         return "editable_table";
     }
 
-    @RequestMapping(value = "/extra/profile")
-    public String profile(){ return "profile"; }
+    @RequestMapping(value = "/extra/profile/{id}")
+    public String profile(Model model, @PathVariable Integer id){
+        // 根据用户id查询其上传的所有视频
+        List<Video> videoList = videoService.findAllById(id);
+        model.addAttribute("vs",videoList);
+        return "profile";
+    }
 
     @RequestMapping(value = "/extra/404")
     public String notFound(){ return "error/404"; }

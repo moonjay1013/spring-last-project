@@ -75,10 +75,9 @@
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>附加页</span></a>
                     <ul class="sub-menu-list">
-                        <li><a th:href="@{/extra/profile}"> Profile</a></li>
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"> Profile</a></li>
                         <li><a th:href="@{/extra/404}"> 404 Error</a></li>
                         <li><a th:href="@{/extra/500}"> 500 Error</a></li>
-                        <li><a th:href="@{/login}"> Registration Page</a></li>
                         <li><a th:href="@{/extra/lock}"> Lockscreen </a></li>
                     </ul>
                 </li>
@@ -110,9 +109,8 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                        <li><a th:href="@{/extra/profile}"><i class="fa fa-user"></i>  Profile</a></li>
-                        <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
-                        <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"><i class="fa fa-user"></i>  Profile</a></li>
+                        <li><a th:href="@{/login}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                     </ul>
                 </li>
 
@@ -180,10 +178,9 @@
                                             <h4 class="modal-title">视频信息管理</h4>
                                         </div>
 
-                                        <div class="modal-body row" th:each="video:${videos}">
+                                        <div class="modal-body row" th:each="video,index:${videos}">
 
                                             <div class="col-md-5 img-modal" >
-                                                <input th:value="${video.id}" type="hidden" id="get">
                                                 <img th:src="${video.coverPath}" width="100px" height="200px"  alt="cover image">
                                                 <p><strong>文件类型:</strong> mp4</p>
                                                 <p><strong>尺 寸:</strong><span th:text="${video.videoWidth}+'x'+${video.videoHeight}"></span></p>
@@ -195,21 +192,21 @@
                                                 <p><strong>状态码:</strong> <a th:text="${video.status}"></a></p>
                                                 <div class="form-group">
                                                     <label> 视频信息</label>
-                                                    <input th:id="${video.id}+'d'" class="form-control" th:value="${video.videoDesc}">
+                                                    <input th:id="${index.index}+'d'" class="form-control" th:value="${video.videoDesc}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label> 封面路径<span th:text="${video.coverPath}"></span></label>
                                                     <!--为了阻止恶意软件猜测文件路径，字符串以 C:\fakepath\ 为前缀;如果没有选择文件，该值为空字符串 ""-->
-                                                    <input type="file" th:id="${video.id}+'c'" th:value="${video.coverPath}" accept="image/jpeg, image/png">
+                                                    <input type="file" th:id="${index.index}+'c'" th:value="${video.coverPath}" accept="image/jpeg, image/png">
                                                 </div>
                                                 <div class="form-group">
                                                     <label> 视频路径<span th:text="${video.videoPath}"></span> </label>
-                                                    <input type="file" th:id="${video.id}+'l'" th:value="${video.videoPath}" accept="video/mp4">
+                                                    <input type="file" th:id="${index.index}+'l'" th:value="${video.videoPath}" accept="video/mp4">
                                                 </div>
-                                                <input th:id="${video.id}+'i'" th:value="${video.id}" type="hidden">
+                                                <input th:id="${index.index}+'i'" th:value="${video.id}" type="hidden">
                                                 <div class="pull-right">
                                                     <button class="btn btn-danger btn-sm" type="button"><a th:href="@{/del(id=${video.id})}" style="text-decoration: none; color: white">删 除</a></button>
-                                                    <button th:id="${video.id}+'g'" class="btn btn-success btn-sm" type="button"><a style="text-decoration: none; color: white">save changes</a></button>
+                                                    <button th:id="${index.index}+'g'" class="btn btn-success btn-sm" type="button"><a style="text-decoration: none; color: white">save changes</a></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,6 +247,19 @@
 
 <script>
     $(function() {
+        $("#0g").click(function(){
+            // debugger
+            var videoDesc = $("#0d").val();
+            var coverPath = $("#0c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#0l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#0i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
         $("#1g").click(function(){
             // debugger
             var videoDesc = $("#1d").val();
@@ -297,19 +307,6 @@
             videoPath = "/videos/"+videoPath;
             coverPath = "/videos/"+coverPath;
             var id = $("#4i").val();
-            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
-            $.post(url,function (data) {
-            });
-            window.location.reload();
-        });
-        $("#5g").click(function(){
-            // debugger
-            var videoDesc = $("#5d").val();
-            var coverPath = $("#5c").val().substring(12,25);  // 获取input标签的值
-            var videoPath = $("#5l").val().substring(12,25);
-            videoPath = "/videos/"+videoPath;
-            coverPath = "/videos/"+coverPath;
-            var id = $("#5i").val();
             var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
             $.post(url,function (data) {
             });

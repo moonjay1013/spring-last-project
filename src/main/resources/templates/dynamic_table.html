@@ -80,10 +80,9 @@
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>附加页</span></a>
                     <ul class="sub-menu-list">
-                        <li><a th:href="@{/extra/profile}"> Profile</a></li>
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"> Profile</a></li>
                         <li><a th:href="@{/extra/404}"> 404 Error</a></li>
                         <li><a th:href="@{/extra/500}"> 500 Error</a></li>
-                        <li><a th:href="@{/login}"> Registration Page</a></li>
                         <li><a th:href="@{/extra/lock}"> Lockscreen </a></li>
                     </ul>
                 </li>
@@ -116,9 +115,8 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                        <li><a th:href="@{/extra/profile}"><i class="fa fa-user"></i>  Profile</a></li>
-                        <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
-                        <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"><i class="fa fa-user"></i>  Profile</a></li>
+                        <li><a th:href="@{/login}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                     </ul>
                 </li>
 

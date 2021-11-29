@@ -76,8 +76,7 @@
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>Extra Pages</span></a>
                     <ul class="sub-menu-list">
-                        <li><a th:href="@{/extra/profile}"> Profile</a></li>
-                        <li><a th:href="@{/extra/directory}"> Directory </a></li>
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"> Profile</a></li>
                         <li><a th:href="@{/extra/404}"> 404 Error</a></li>
                         <li><a th:href="@{/extra/500}"> 500 Error</a></li>
                         <li><a th:href="@{/login}"> Registration Page</a></li>

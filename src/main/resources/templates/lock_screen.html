@@ -29,10 +29,10 @@
             </div>
             <h1>[[${session.user.getName()}]]</h1>
             <div class="row">
-                <form th:action="@{/index}"  class="form-inline" role="form">
+                <form class="form-inline" role="form">
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <input id="pwd_" type="password" class="form-control lock-input" placeholder="Password"/>
-                        <button type="submit" class="btn btn-lock pull-right" @click="click">
+                        <button type="button" class="btn btn-lock pull-right" id="but">
                             <i class="fa fa-check"></i>
                         </button>
                     </div>
@@ -47,11 +47,19 @@
 <script th:src="@{/js/modernizr.min.js}"></script>
 
 <script>
-    function click(){
-        var id = document.getElementById("pwd_")
-        console.log(id)
-        alert(id)
-    }
+    $(function(){
+        $("#but").click(function (){
+            var p = $("#pwd_").val();
+            // debugger
+            if (p == "123456"){
+                // $.post();
+                window.location.replace("/index");
+            }else{
+                document.getElementById("pwd_").value = "";
+                alert("密码错误，请重新输入！");
+            }
+        });
+    });
 </script>
 </body>
 </html>

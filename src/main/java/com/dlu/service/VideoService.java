@@ -12,4 +12,6 @@ public interface VideoService {
     void deleteVideo(Integer id);
 
     void updateVideo(String videoPath,String coverPath,String videoDesc,Integer id);
+
+    List<Video> findAllById(Integer id);
 }
