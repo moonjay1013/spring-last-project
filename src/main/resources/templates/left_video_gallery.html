@@ -154,7 +154,8 @@
                             <div id="gallery" class="media-gal">
                                 <div class="item "  th:each="video,index:${videos}">
                                     <!--<label th:text="${index}"></label>-->
-                                    <input th:value="${index.index}" th:class="${index.index}">
+                                    <!--获得当前视频的索引-->
+                                    <input th:value="${index.index}" th:class="${index.index}" type="hidden">
                                     <video th:src="${video.videoPath}" controls="controls" th:width="${video.videoWidth}+'%'" th:height="${video.videoHeight}+'%'">
                                         您的浏览器不支持video标签...
                                     </video>
@@ -194,7 +195,7 @@
                                                 <p><strong>状态码:</strong> <a th:text="${video.status}"></a></p>
                                                 <div class="form-group">
                                                     <label> 视频信息</label>
-                                                    <input id="info" class="form-control" th:placeholder="${video.videoDesc}">
+                                                    <input th:id="${video.id}+'d'" class="form-control" th:value="${video.videoDesc}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label> 封面路径<span th:text="${video.coverPath}"></span></label>
@@ -251,77 +252,98 @@
     $(function() {
         $("#1g").click(function(){
             // debugger
+            var videoDesc = $("#1d").val();
             var coverPath = $("#1c").val().substring(12,25);  // 获取input标签的值
             var videoPath = $("#1l").val().substring(12,25);
             videoPath = "/videos/"+videoPath;
             coverPath = "/videos/"+coverPath;
-            // var videoDesc = $("#info").val();
             var id = $("#1i").val();
-            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&id="+id
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
             $.post(url,function (data) {
             });
             window.location.reload();
-            // $.ajax({
-            //     url: "/update",
-            //     data: {coverPath: coverPath, videoPath: videoPath, videoDesc: videoDesc, id:id},
-            //     type: "POST",
-            //     // console.log("111"),
-            //     dataType: "json",
-            //     success: function(data) {
-            //         data = jQuery.parseJSON(data);  //dataType指明了返回数据为json类型，故不需要再反序列化
-            //         console.log("111")
-            //         window.location.replace("/layout/left")
-            //         // window.alert("更新成功！")
-            //
-            //     },
-            //     fail: function (){
-            //         window.alert("更新失败！")
-            // }
-            // });
         });
         $("#2g").click(function(){
             // debugger
+            var videoDesc = $("#2d").val();
             var coverPath = $("#2c").val().substring(12,25);  // 获取input标签的值
             var videoPath = $("#2l").val().substring(12,25);
             videoPath = "/videos/"+videoPath;
             coverPath = "/videos/"+coverPath;
-            // var videoDesc = $("#info").val();
             var id = $("#2i").val();
-            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&id="+id
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
             $.post(url,function (data) {
             });
             window.location.reload();
         });
         $("#3g").click(function(){
-            debugger
+            // debugger
+            var videoDesc = $("#3d").val();
             var coverPath = $("#3c").val().substring(12,25);  // 获取input标签的值
             var videoPath = $("#3l").val().substring(12,25);
             videoPath = "/videos/"+videoPath;
             coverPath = "/videos/"+coverPath;
-            // var videoDesc = $("#info").val();
             var id = $("#3i").val();
-            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&id="+id
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
+        $("#4g").click(function(){
+            // debugger
+            var videoDesc = $("#4d").val();
+            var coverPath = $("#4c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#4l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#4i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
+        $("#5g").click(function(){
+            // debugger
+            var videoDesc = $("#5d").val();
+            var coverPath = $("#5c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#5l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#5i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
             $.post(url,function (data) {
             });
             window.location.reload();
         });
         $("#0").click(function(){
-            debugger
-            var index = parseInt($(".0").val());
+            // debugger
+            var index = parseInt($("."+'0').val());
+            // window.alert(index);
             // return index;
-            // alert(index);
         });
         $("#1").click(function(){
-            debugger
-            var index = parseInt($(".1").val());
+            // debugger
+            var index = parseInt($("."+'1').val());
+            // window.alert(index);
             // return index;
-            // alert(index);
         });
         $("#2").click(function(){
-            debugger
-            var index = parseInt($(".2").val());
+            // debugger
+            var index = parseInt($("."+'2').val());
+            // window.alert(index);
             // return index;
-            // alert(index);
+        });
+        $("#3").click(function(){
+            // debugger
+            var index = parseInt($("."+'3').val());
+            // window.alert(index);
+            // return index;
+        });
+        $("#4").click(function(){
+            // debugger
+            var index = parseInt($("."+'4').val());
+            // window.alert(index);
+            // return index;
         });
     });
 </script>

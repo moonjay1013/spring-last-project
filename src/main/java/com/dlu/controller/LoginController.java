@@ -51,6 +51,8 @@ public class LoginController {
                 return "login";
             }
         }else {
+            // 注销session
+            session.invalidate();
             return "login";
         }
     }

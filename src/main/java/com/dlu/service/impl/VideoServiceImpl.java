@@ -32,7 +32,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void updateVideo(String videoPath, String coverPath, Integer id) {
-        videoDao.updateById(videoPath,coverPath,id);
+    public void updateVideo(String videoPath, String coverPath, String videoDesc, Integer id) {
+        videoDao.updateById(videoPath,coverPath,videoDesc,id);
     }
 }

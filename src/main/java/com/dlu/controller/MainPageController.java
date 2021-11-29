@@ -64,8 +64,11 @@ public class MainPageController {
         video.setVideoHeight(100);
         // 获取当前选择文件的path -- 正确格式为"/videos/..."，需要修改
         String vp = video.getVideoPath();
-        String newPath = "/videos/"+vp;
-        video.setVideoPath(newPath);
+        String newV = "/videos/"+vp;
+        video.setVideoPath(newV);
+        String cp = video.getCoverPath();
+        String newC = "/videos/"+cp;
+        video.setVideoPath(newC);
 
         videoService.addVideo(video);
         // 新上传的视频点赞数为0，状态默认为1
@@ -88,7 +91,7 @@ public class MainPageController {
     @RequestMapping("/update")
     public String update(Video video){
         // 视频的更新 封面、视频路径功能
-        videoService.updateVideo(video.getVideoPath(),video.getCoverPath(),video.getId());
+        videoService.updateVideo(video.getVideoPath(),video.getCoverPath(),video.getVideoDesc(),video.getId());
         return "redirect:/layout/left";
     }
 

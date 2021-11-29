@@ -11,5 +11,5 @@ public interface VideoService {
 
     void deleteVideo(Integer id);
 
-    void updateVideo(String videoPath,String coverPath,Integer id);
+    void updateVideo(String videoPath,String coverPath,String videoDesc,Integer id);
 }
