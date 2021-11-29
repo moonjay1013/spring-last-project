@@ -324,8 +324,8 @@
         </form>
         <form class="sign" th:action="@{/result}" th:object="${user}" method="post">
             <h1 th:text="#{register.tip}"></h1>
-            <input th:field="*{id}" name="id" type="text" th:placeholder="#{register.id}">
             <input th:field="*{name}" name="name" type="text" th:placeholder="#{login.username}">
+            <input th:field="*{nickname}" name="nickname" type="text" th:placeholder="#{register.nickname}">
             <input th:field="*{pwd}" name="password" type="password" th:placeholder="#{register.password}">
             <input type="password" th:placeholder="#{register.confirm}">
             <input type="submit" class="btn" th:value="#{register.btn}">

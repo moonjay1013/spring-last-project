@@ -129,6 +129,12 @@ public class MainPageController {
         return "profile";
     }
 
+    @PostMapping(value = "/result")
+    public String result(@ModelAttribute User user){
+        System.out.println(user);
+        return "result";
+    }
+
     @RequestMapping(value = "/extra/404")
     public String notFound(){ return "error/404"; }
 
