@@ -39,7 +39,17 @@ public class MainPageController {
 
     @PostMapping("/addBgm")
     public String addBgm(@ModelAttribute Bgm bgm){
+        // bgm的path前加上相对路径
+        String path = bgm.getPath();
+        bgm.setPath("/bgm/"+path);
         bgmService.addBgm(bgm);
+        return "redirect:/table/basic";
+    }
+
+    /**删除bgm*/
+    @RequestMapping({"/deleleBgm"})
+    public String del(Bgm bgm) {
+        bgmService.delBgm(bgm.getId());
         return "redirect:/table/basic";
     }
 
@@ -82,6 +92,7 @@ public class MainPageController {
         return "left_video_gallery";
     }
 
+    /**删除视频*/
     @RequestMapping("/del")
     public String del(Video video){
         videoService.deleteVideo(video.getId());

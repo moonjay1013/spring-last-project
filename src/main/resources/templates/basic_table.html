@@ -204,8 +204,13 @@
                                     <td th:text="${bgm.id}"></td>
                                     <td th:text="${bgm.author}"></td>
                                     <td th:text="${bgm.musicName}"></td>
-                                    <td >
-                                        <audio th:src="${bgm.path}" controls loop></audio>
+                                    <td ><audio th:src="${bgm.path}" controls loop></audio></td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary"
+                                           th:href="@{|/blank_page/${bgm.id}|}">编辑</a>
+                                        <button class="btn btn-danger btn-sm" type="button"><a
+                                                th:href="@{/deleleBgm(id=${bgm.id})}"
+                                                style="text-decoration: none; color: white">删 除</a></button>
                                     </td>
                                 </tr>
                                 </tbody>

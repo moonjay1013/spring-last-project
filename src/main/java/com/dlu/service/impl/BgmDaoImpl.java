@@ -6,6 +6,7 @@ import com.dlu.service.BgmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service("BgmService")
@@ -20,5 +21,11 @@ public class BgmDaoImpl implements BgmService {
     @Override
     public void addBgm(Bgm bgm) {
         bgmDao.save(bgm);
+    }
+
+    @Override
+    public void delBgm(Integer id) {
+        Bgm bgm = bgmDao.getById(id);
+        bgmDao.delete(bgm);
     }
 }
