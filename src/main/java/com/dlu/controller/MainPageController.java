@@ -8,12 +8,10 @@ import com.dlu.service.UserService;
 import com.dlu.service.VideoService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -124,13 +122,6 @@ public class MainPageController {
         model.addAttribute("videos",videoList);
         model.addAttribute("bgms",bgmList);
         return "dynamic_table"; }
-
-    @RequestMapping(value = "/table/editable")
-    public String editable(Model model){
-//        List<User> userList = userService.getAllUser();
-//        model.addAttribute("users",userList);
-        return "editable_table";
-    }
 
     @RequestMapping(value = "/extra/profile/{id}")
     public String profile(Model model, @PathVariable Integer id){
