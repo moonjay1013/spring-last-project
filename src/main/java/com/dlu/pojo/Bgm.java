@@ -1,11 +1,14 @@
 package com.dlu.pojo;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.*;
 
 /**
  * @author moonjay
  */
 
+@ApiModel(value = "BGM实体类", description = "bgm信息描述")
 @Entity(name = "bgm")
 public class Bgm {
     @Id

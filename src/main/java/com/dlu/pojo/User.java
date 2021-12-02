@@ -8,8 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
  * @author moonjay
  */
 
-@Entity(name="users")
 @ApiModel(value = "用户实体类", description = "用户信息描述")
+@Entity(name="users")
 public class User {
     /** 主键设置为id id自增长*/
     @Id

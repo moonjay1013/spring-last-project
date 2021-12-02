@@ -29,12 +29,14 @@ public class MainPageController {
     @Autowired
     private BgmService bgmService;
 
+    /**bgm添加页*/
     @RequestMapping(value = "/layout/blank")
     public String blank(Model model,Bgm bgm){
         model.addAttribute("bgm",bgm);
         return "blank_page";
     }
 
+    /**bgm添加功能  重定向到基本表页面*/
     @PostMapping("/addBgm")
     public String addBgm(@ModelAttribute Bgm bgm){
         // bgm的path前加上相对路径
@@ -44,19 +46,21 @@ public class MainPageController {
         return "redirect:/table/basic";
     }
 
-    /**删除bgm*/
+    /**删除bgm 重定向到基本表页面*/
     @RequestMapping({"/deleleBgm"})
     public String del(Bgm bgm) {
         bgmService.delBgm(bgm.getId());
         return "redirect:/table/basic";
     }
 
+    /**video添加页*/
     @RequestMapping(value = "/layout/boxed")
     public String boxed(Model model,Video video){
         model.addAttribute("video",video);
         return "boxed_view";
     }
 
+    /**video添加功能 重定向到基本表*/
     @PostMapping("/addVideo")
     public String addVideo(@ModelAttribute Video video){
         Date dt = new Date();
@@ -79,10 +83,10 @@ public class MainPageController {
         video.setCoverPath(newC);
 
         videoService.addVideo(video);
-        // 新上传的视频点赞数为0，状态默认为1
         return "redirect:/table/basic";
     }
 
+    /**视频信息详情页*/
     @RequestMapping(value = "/layout/left")
     public String left(Model model){
         List<Video> videoList = videoService.findAll();
@@ -90,20 +94,22 @@ public class MainPageController {
         return "left_video_gallery";
     }
 
-    /**删除视频*/
+    /**删除视频 重定向到详情页*/
     @RequestMapping("/del")
     public String del(Video video){
         videoService.deleteVideo(video.getId());
         return "redirect:/layout/left";
     }
 
+    /**video更新功能
+     * 根据id更新视频封面。路径和描述信息*/
     @RequestMapping("/update")
     public String update(Video video){
-        // 视频的更新 封面、视频路径功能
         videoService.updateVideo(video.getVideoPath(),video.getCoverPath(),video.getVideoDesc(),video.getId());
         return "redirect:/layout/left";
     }
 
+    /**基本表 --用户、视频、bgm*/
     @RequestMapping(value = "/table/basic")
     public String basic(Model model){
         List<User> userList = userService.findAll();
@@ -115,26 +121,23 @@ public class MainPageController {
         return "basic_table";
     }
 
+    /**动态表  模糊查询*/
     @RequestMapping(value = "/table/dynamic")
     public String dynamic(Model model){
         List<Video> videoList = videoService.findAll();
         List<Bgm> bgmList = bgmService.findAll();
         model.addAttribute("videos",videoList);
         model.addAttribute("bgms",bgmList);
-        return "dynamic_table"; }
+        return "dynamic_table";
+    }
 
+    /**用户详情页 显示该用户上传的视频*/
     @RequestMapping(value = "/extra/profile/{id}")
     public String profile(Model model, @PathVariable Integer id){
         // 根据用户id查询其上传的所有视频
         List<Video> videoList = videoService.findAllById(id);
         model.addAttribute("vs",videoList);
         return "profile";
-    }
-
-    @PostMapping(value = "/result")
-    public String result(@ModelAttribute User user){
-        System.out.println(user);
-        return "result";
     }
 
     @RequestMapping(value = "/extra/404")

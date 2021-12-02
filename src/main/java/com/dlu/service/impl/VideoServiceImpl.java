@@ -4,11 +4,8 @@ import com.dlu.dao.VideoDao;
 import com.dlu.pojo.Video;
 import com.dlu.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service("VideoService")

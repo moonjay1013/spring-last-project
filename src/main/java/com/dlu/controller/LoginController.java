@@ -27,12 +27,6 @@ public class LoginController {
 
     private final Logger log = LoggerFactory.getLogger(LoginController.class);
 
-    @ResponseBody
-    @RequestMapping("/hello")
-    String hello(){
-        return "hello world";
-    }
-
     @RequestMapping(value = "/login")
     @ApiOperation(value = "Login", notes = "从DB查询用户信息验证登录，不登录则无法访问主界面")
     public String doLogin(@RequestParam(name = "name",required=false)String name, @RequestParam(name = "pwd",required=false)String pwd,
@@ -57,13 +51,19 @@ public class LoginController {
         }
     }
 
-    // 用户注册跳转页
-
     @RequestMapping(value="/index",method = RequestMethod.GET)
+    @ApiOperation(value = "index", notes = "跳转到主界面的路由--session")
     public String index(Model model, HttpServletRequest request){
         // 这里获得session是为了在登陆成功的后台界面显示用户信息
         User user = (User) request.getSession().getAttribute("user");
         model.addAttribute("user", user);
         return "index";
+    }
+
+    @PostMapping(value = "/result")
+    @ApiOperation(value = "result", notes = "注册成功跳转页")
+    public String result(@ModelAttribute User user){
+        System.out.println(user);
+        return "result";
     }
 }

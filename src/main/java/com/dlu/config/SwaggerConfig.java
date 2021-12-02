@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 .title("spring-last-project Api 文档")
                 .description("Api 接口")
                 .version("1.0")
-                .contact(new Contact("moon jay","https://www.dlu.edu.cn","1318027823@qq.com"))
+                .contact(new Contact("moonjay","https://www.dlu.edu.cn","131xxxxxxx@qq.com"))
                 .build();
     }
 }

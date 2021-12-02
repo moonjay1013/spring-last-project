@@ -4,14 +4,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @author moonjay
  */
 
-@Entity(name = "videos")
 @ApiModel(value = "视频实体类", description = "视频信息描述")
+@Entity(name = "videos")
 public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
