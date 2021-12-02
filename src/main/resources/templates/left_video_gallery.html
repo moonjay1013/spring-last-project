@@ -180,7 +180,9 @@
                                         <div class="modal-body row" th:each="video,index:${videos}">
 
                                             <div class="col-md-5 img-modal" >
-                                                <img th:src="${video.coverPath}" width="100px" height="200px"  alt="cover image">
+                                                <!--点击‘详细信息’获取当前视频的索引并显示在输入框-->
+                                                <input id="test" type="hidden">
+                                                <img th:src="${video.coverPath}" width="100px" height="200px" alt="cover image">
                                                 <p><strong>文件类型:</strong> mp4</p>
                                                 <p><strong>尺 寸:</strong><span th:text="${video.videoWidth}+'x'+${video.videoHeight}"></span></p>
                                                 <p><strong>上传者(user id):</strong> <a th:text="${video.userId}"></a></p>
@@ -311,35 +313,47 @@
             });
             window.location.reload();
         });
+        $("#5g").click(function(){
+            // debugger
+            var videoDesc = $("#5d").val();
+            var coverPath = $("#5c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#5l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#5i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
         $("#0").click(function(){
             // debugger
             var index = parseInt($("."+'0').val());
+            document.getElementById("test").value=index;
             // window.alert(index);
-            // return index;
         });
         $("#1").click(function(){
             // debugger
             var index = parseInt($("."+'1').val());
-            // window.alert(index);
-            // return index;
+            document.getElementById("test").value=index;
         });
         $("#2").click(function(){
             // debugger
             var index = parseInt($("."+'2').val());
-            // window.alert(index);
-            // return index;
+            document.getElementById("test").value=index;
         });
         $("#3").click(function(){
             // debugger
             var index = parseInt($("."+'3').val());
-            // window.alert(index);
-            // return index;
+            document.getElementById("test").value=index;
         });
         $("#4").click(function(){
             // debugger
             var index = parseInt($("."+'4').val());
-            // window.alert(index);
-            // return index;
+        });
+        $("#5").click(function(){
+            // debugger
+            var index = parseInt($("."+'4').val());
         });
     });
 </script>
