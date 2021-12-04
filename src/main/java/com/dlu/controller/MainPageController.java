@@ -46,6 +46,21 @@ public class MainPageController {
         return "redirect:/table/basic";
     }
 
+    /**bgm更新页*/
+    @GetMapping({"/updateB/{id}"})
+    public String toUpdateBgm(@PathVariable("id") Integer id, Model model) {
+        Bgm bgm = bgmService.getById(id);
+        model.addAttribute("bgm", bgm);
+        return "updateBgm";
+    }
+
+    /**更新bgm*/
+    @RequestMapping({"/updateBgm"})
+    public String updateBgm(@ModelAttribute Bgm bgm) {
+        bgmService.updateBgm(("/bgm/" + bgm.getPath()),bgm.getMusicName(),bgm.getAuthor(), bgm.getId());
+        return "redirect:/table/basic";
+    }
+
     /**删除bgm 重定向到基本表页面*/
     @RequestMapping({"/deleleBgm"})
     public String del(Bgm bgm) {

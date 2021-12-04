@@ -12,5 +12,9 @@ public interface BgmService {
 
     void addBgm(Bgm bgm);
 
+    Bgm getById(Integer id);
+
     void delBgm(Integer id);
+
+    void updateBgm(String address,String musicName,String author, Integer id);
 }

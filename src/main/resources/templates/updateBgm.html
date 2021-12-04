@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="ThemeBucket">
-  <link rel="shortcut icon" href="#" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
 
-  <title>Bgm管理</title>
+    <title>Bgm更新</title>
 
-  <link th:href="@{/css/style.css}" rel="stylesheet">
-  <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
 
 
-  <script th:src="@{/js/html5shiv.js}"></script>
-  <script th:src="@{/js/respond.min.js}"></script>
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}"></script>
+    <script th:src="@{/js/respond.min.js}"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
 
-  <![endif]-->
+    <![endif]-->
 </head>
 
 <body class="sticky-header">
@@ -51,10 +51,9 @@
                 </div>
 
                 <h5 class="left-nav-title">用户信息</h5>
-                <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li><a th:href="@{/extra/profile}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
-                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                    <li><a th:href="@{|/extra/profile/${session.user.id}|}"><i class="fa fa-user"></i>  Profile</a></li>
+                    <li><a th:href="@{/login}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                 </ul>
             </div>
 
@@ -75,7 +74,7 @@
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>附加页</span></a>
                     <ul class="sub-menu-list">
-                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"> Profile</a></li>
+                        <li><a th:href="@{/extra/profile}"> Profile</a></li>
                         <li><a th:href="@{/extra/404}"> 4xx Error</a></li>
                         <li><a th:href="@{/extra/500}"> 500 Error</a></li>
                         <li><a th:href="@{/extra/lock}"> Lockscreen </a></li>
@@ -88,64 +87,67 @@
         </div>
     </div>
     <!-- left side end-->
-    
+
     <!-- main content start-->
-    <div class="main-content" >
+    <div class="main-content">
 
         <!-- header section start-->
         <div class="header-section">
 
-        <!--toggle button start-->
-        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
-        <!--toggle button end-->
+            <!--toggle button start-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--toggle button end-->
 
-        <!--notification menu start -->
-        <div class="menu-right">
-            <ul class="notification-menu">
-                <li>
-                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <img th:src="${session.user.faceImage}" alt="" />
-                        [[${session.user.getName()}]]
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"><i class="fa fa-user"></i>  Profile</a></li>
-                        <li><a th:href="@{/login}"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                    </ul>
-                </li>
+            <!--notification menu start -->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <img th:src="${session.user.faceImage}" alt=""/>
+                            [[${session.user.getName()}]]
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                            <li><a th:href="@{/extra/profile}"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        </ul>
+                    </li>
 
-            </ul>
-        </div>
-        <!--notification menu end -->
+                </ul>
+            </div>
+            <!--notification menu end -->
 
         </div>
         <!-- header section end-->
 
         <!-- page heading start-->
-        <div class="page-heading">
-            添加BGM信息
-        </div>
+
         <!-- page heading end-->
 
         <!--body wrapper start-->
-        <!-- 添加bgm的表单-->
-        <form th:action="@{/addBgm}"  method="post" th:object="${bgm}">
-
+        <!--编辑bgm-->
+        <form th:object="${bgm}">
+            <input th:value="${bgm.id}" id="ii" type="hidden">
             <div class="form-group">
-                <label for="exampleInputEmail1">作者名称</label>
-                <input th:field="*{author}" class="form-control" id="exampleInputEmail1" placeholder="author">
+                <label>音乐作者</label>
+                <input th:value="${bgm.author}" id="author" type="text" class="form-control"
+                       placeholder="author">
+
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">音乐名称</label>
-                <input th:field="*{musicName}" class="form-control" id="exampleInput" placeholder="music_name">
+                <label>音乐名称</label>
+                <input th:value="${bgm.musicName}" id="musicname" type="text"
+                       class="form-control"
+                       placeholder="music_name">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputFile">提交文件</label>
-                <input type="file" id="exampleInputFile" th:field="*{path}">
+                <label> 提交文件 </label>
+                <input type="file" id="bgm" th:value="${bgm.path}">
             </div>
-            <button type="submit" class="btn btn-default">提交</button>
+            <button type="submit" id="ch" class="btn btn-default">提交</button>
         </form>
         <!--body wrapper end-->
 
@@ -154,9 +156,9 @@
             2021 &copy; Developed by <a href="http://www.mycodes.net/" target="_blank">dlu admin</a>
         </footer>
         <!--footer section end-->
-
-
     </div>
+
+
     <!-- main content end-->
 </section>
 
@@ -171,6 +173,20 @@
 
 <!--common scripts for all pages-->
 <script th:src="@{/js/scripts.js}"></script>
-
+<script>
+    $(function () {
+        $("#ch").click(function () {
+            // debugger
+            var i = $("#ii").val();   //id
+            var m = $("#musicname").val();//author
+            var a = $("#author").val();
+            var bp = $("#bgm").val().substring(12, 40); //path
+            var url = "/updateBgm?path=" + bp + "&musicName=" + m + "&author=" + a + "&id=" + i;
+            $.post(url, function (data) {
+            });
+            window.location.reload();
+        });
+    })
+</script>
 </body>
 </html>

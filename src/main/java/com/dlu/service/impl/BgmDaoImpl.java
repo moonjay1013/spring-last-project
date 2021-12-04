@@ -23,8 +23,18 @@ public class BgmDaoImpl implements BgmService {
     }
 
     @Override
+    public Bgm getById(Integer id) {
+        return bgmDao.getById(id);
+    }
+
+    @Override
     public void delBgm(Integer id) {
         Bgm bgm = bgmDao.getById(id);
         bgmDao.delete(bgm);
+    }
+
+    @Override
+    public void updateBgm(String address, String musicName, String author, Integer id) {
+        bgmDao.updateBgmAddress(address, musicName, author, id);
     }
 }

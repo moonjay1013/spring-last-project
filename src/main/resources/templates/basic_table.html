@@ -72,7 +72,7 @@
                 <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>附加页</span></a>
                     <ul class="sub-menu-list">
                         <li><a th:href="@{|/extra/profile/${session.user.id}|}"> Profile</a></li>
-                        <li><a th:href="@{/extra/404}"> 404 Error</a></li>
+                        <li><a th:href="@{/extra/404}"> 4xx Error</a></li>
                         <li><a th:href="@{/extra/500}"> 500 Error</a></li>
                         <li><a th:href="@{/extra/lock}"> Lockscreen </a></li>
                     </ul>
@@ -206,7 +206,7 @@
                                     <td ><audio th:src="${bgm.path}" controls loop></audio></td>
                                     <td>
                                         <a class="btn btn-sm btn-primary"
-                                           th:href="@{|/blank_page/${bgm.id}|}">编辑</a>
+                                           th:href="@{|/updateB/${bgm.id}|}">编辑</a><!--更新页跳转-->
                                         <button class="btn btn-danger btn-sm" type="button"><a
                                                 th:href="@{/deleleBgm(id=${bgm.id})}"
                                                 style="text-decoration: none; color: white">删 除</a></button>
