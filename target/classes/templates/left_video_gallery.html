@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="ThemeBucket">
+  <link rel="shortcut icon" href="#" type="image/png">
+
+  <title>视频信息库</title>
+
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
+
+  <script th:src="@{/js/html5shiv.js}"></script>
+  <script th:src="@{/js/respond.min.js}"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <![endif]-->
+</head>
+
+<body class="sticky-header left-side-collapsed">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a th:href="@{/index}"><img th:src="@{/images/logo_icon.png}" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+
+        <div class="left-side-inner">
+
+            <!-- visible to small devices only -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" th:src="${session.user.faceImage}" class="media-object"/>
+                    <div class="media-body">
+                        <h4><a href="#">[[${session.user.getName()}]]</a></h4>
+                        <span>"something else..."</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">用户信息</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a th:href="@{/extra/profile}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                </ul>
+            </div>
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a th:href="@{/index}"><i class="fa fa-home"></i> <span>首 页</span></a></li>
+                <li class="menu-list nav-active"><a href=""><i class="fa fa-laptop"></i> <span>功能页</span></a>
+                    <ul class="sub-menu-list">
+                        <li ><a th:href="@{/layout/blank}"> Bgm管理</a></li>
+                        <li><a th:href="@{/layout/boxed}"> 添加video</a></li>
+                        <li class="active"><a th:href="@{/layout/left}"> 视频信息库</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>数据表</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/table/basic}"> 基本表</a></li>
+                        <li><a th:href="@{/table/dynamic}"> 动态表</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>附加页</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"> Profile</a></li>
+                        <li><a th:href="@{/extra/404}"> 4xx Error</a></li>
+                        <li><a th:href="@{/extra/500}"> 500 Error</a></li>
+                        <li><a th:href="@{/extra/lock}"> Lockscreen </a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/login}"><i class="fa fa-sign-in"></i> <span>登录页</span></a></li>
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+        <!--toggle button start-->
+        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+        <!--toggle button end-->
+
+        <!--notification menu start -->
+        <div class="menu-right">
+            <ul class="notification-menu">
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img th:src="${session.user.faceImage}" alt="user's face image" />
+                        [[${session.user.getName()}]]
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"><i class="fa fa-user"></i>  Profile</a></li>
+                        <li><a th:href="@{/login}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                Media Gallery
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">首 页</a>
+                </li>
+                <li class="active"> Video Gallery </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            视频信息管理
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+
+                            <div id="gallery" class="media-gal">
+                                <div class="item "  th:each="video,index:${videos}">
+                                    <!--<label th:text="${index}"></label>-->
+                                    <!--获得当前视频的索引-->
+                                    <input th:value="${index.index}" th:class="${index.index}" type="hidden">
+                                    <video th:src="${video.videoPath}" controls="controls" th:width="${video.videoWidth}+'%'" th:height="${video.videoHeight}+'%'">
+                                        您的浏览器不支持video标签...
+                                    </video>
+                                    <p href="#myModal" th:id="${index.index}" data-toggle="modal">详细信息 </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-center clearfix">
+                                <ul class="pagination">
+                                    <li><a href="#">«</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">视频信息管理</h4>
+                                        </div>
+
+                                        <div class="modal-body row" th:each="video,index:${videos}">
+
+                                            <div class="col-md-5 img-modal" >
+                                                <!--点击‘详细信息’获取当前视频的索引并显示在输入框-->
+                                                <input id="test" type="hidden">
+                                                <img th:src="${video.coverPath}" width="100px" height="200px" alt="cover image">
+                                                <p><strong>文件类型:</strong> mp4</p>
+                                                <p><strong>尺 寸:</strong><span th:text="${video.videoWidth}+'x'+${video.videoHeight}"></span></p>
+                                                <p><strong>上传者(user id):</strong> <a th:text="${video.userId}"></a></p>
+                                                <p><strong>上传时间:</strong> <a th:text="${video.crateTime}"></a></p>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <p class="mtop10"><strong>bgm编号:</strong><span th:text="${video.audioId}"></span></p>
+                                                <p><strong>状态码:</strong> <a th:text="${video.status}"></a></p>
+                                                <div class="form-group">
+                                                    <label> 视频信息</label>
+                                                    <input th:id="${index.index}+'d'" class="form-control" th:value="${video.videoDesc}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> 封面路径<span th:text="${video.coverPath}"></span></label>
+                                                    <!--为了阻止恶意软件猜测文件路径，字符串以 C:\fakepath\ 为前缀;如果没有选择文件，该值为空字符串 ""-->
+                                                    <input type="file" th:id="${index.index}+'c'" th:value="${video.coverPath}" accept="image/jpeg, image/png">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> 视频路径<span th:text="${video.videoPath}"></span> </label>
+                                                    <input type="file" th:id="${index.index}+'l'" th:value="${video.videoPath}" accept="video/mp4">
+                                                </div>
+                                                <input th:id="${index.index}+'i'" th:value="${video.id}" type="hidden">
+                                                <div class="pull-right">
+                                                    <button class="btn btn-danger btn-sm" type="button"><a th:href="@{/del(id=${video.id})}" style="text-decoration: none; color: white">删 除</a></button>
+                                                    <button th:id="${index.index}+'g'" class="btn btn-success btn-sm" type="button"><a style="text-decoration: none; color: white">save changes</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- modal -->
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+        <footer class="sticky-footer">
+            Footer contents goes here
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+<script th:src="@{/js/jquery-ui-1.9.2.custom.min.js}"></script>
+<script th:src="@{/js/jquery-migrate-1.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/modernizr.min.js}"></script>
+<script th:src="@{/js/jquery.nicescroll.js}"></script>
+
+<!--common scripts for all pages-->
+<script th:src="@{/js/scripts.js}"></script>
+
+<script>
+    $(function() {
+        $("#0g").click(function(){
+            // debugger
+            var videoDesc = $("#0d").val();
+            var coverPath = $("#0c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#0l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#0i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
+        $("#1g").click(function(){
+            // debugger
+            var videoDesc = $("#1d").val();
+            var coverPath = $("#1c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#1l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#1i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
+        $("#2g").click(function(){
+            // debugger
+            var videoDesc = $("#2d").val();
+            var coverPath = $("#2c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#2l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#2i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
+        $("#3g").click(function(){
+            // debugger
+            var videoDesc = $("#3d").val();
+            var coverPath = $("#3c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#3l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#3i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
+        $("#4g").click(function(){
+            // debugger
+            var videoDesc = $("#4d").val();
+            var coverPath = $("#4c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#4l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#4i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
+        $("#5g").click(function(){
+            // debugger
+            var videoDesc = $("#5d").val();
+            var coverPath = $("#5c").val().substring(12,25);  // 获取input标签的值
+            var videoPath = $("#5l").val().substring(12,25);
+            videoPath = "/videos/"+videoPath;
+            coverPath = "/videos/"+coverPath;
+            var id = $("#5i").val();
+            var url = "/update?videoPath="+videoPath+"&coverPath="+coverPath+"&videoDesc="+videoDesc+"&id="+id;
+            $.post(url,function (data) {
+            });
+            window.location.reload();
+        });
+        $("#0").click(function(){
+            // debugger
+            var index = parseInt($("."+'0').val());
+            document.getElementById("test").value=index;
+            // window.alert(index);
+        });
+        $("#1").click(function(){
+            // debugger
+            var index = parseInt($("."+'1').val());
+            document.getElementById("test").value=index;
+        });
+        $("#2").click(function(){
+            // debugger
+            var index = parseInt($("."+'2').val());
+            document.getElementById("test").value=index;
+        });
+        $("#3").click(function(){
+            // debugger
+            var index = parseInt($("."+'3').val());
+            document.getElementById("test").value=index;
+        });
+        $("#4").click(function(){
+            // debugger
+            var index = parseInt($("."+'4').val());
+        });
+        $("#5").click(function(){
+            // debugger
+            var index = parseInt($("."+'4').val());
+        });
+    });
+</script>
+</body>
+</html>
