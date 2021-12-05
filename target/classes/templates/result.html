@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0"> 
+<title>后台管理</title>
+<link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="box-left">
+    <h2>Result</h2>
+</div>
+<div class="box-right">
+    <label th:text="'nickname: ' + ${user.nickname}" />
+    <label th:text="'username: ' + ${user.name}" />
+    <label th:text="'password: ' + ${user.pwd}" />
+    <a th:href="@{/index}">Submit another message</a>
+</div>
+</body>
+</html>

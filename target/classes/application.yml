@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    username: root
+    password: 2018sql
+    # 192.168.99.100为linux虚拟机的ip地址，123456位docker中mysql镜像的密码
+    url: jdbc:mysql://127.0.0.1:3306/spring_last_project?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      # Java 持久化框架
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+  web:
+    resources:
+      chain:
+        strategy:
+          content:
+            enabled: true
+            path: /**
+---
+# 解决springboot项目部署到Tomcat服务器在移动端显示乱码的问题
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  tomcat:
+    uri-encoding: UTF-8
+  port: 8282
+---
+spring:
+  messages:
+    basename: i18n.login
+---
+logging:
+  pattern:
+    #格式化，只能输出日期和内容
+    console: "%d - %msg%n"
+  # 配置日志输出位置
+  file:
+    path: D:/testLog

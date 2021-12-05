@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="ThemeBucket">
+  <link rel="shortcut icon" href="#" type="image/png">
+
+  <title>基本表</title>
+
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
+
+  <script th:src="@{/js/html5shiv.js}"></script>
+  <script th:src="@{/js/respond.min.js}"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a th:href="@{/index}"><img th:src="@{/images/logo_icon.png}" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+        <div class="left-side-inner">
+            <!-- visible to small devices only -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" th:src="${session.user.faceImage}" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="#">[[${session.user.getName()}]]</a></h4>
+                        <span>"something else..."</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">用户信息</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a th:href="@{/extra/profile}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                </ul>
+            </div>
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a th:href="@{/index}"><i class="fa fa-home"></i> <span>首 页</span></a></li>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>功能页</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/layout/blank}"> Bgm管理</a></li>
+                        <li><a th:href="@{/layout/boxed}"> 添加video</a></li>
+                        <li><a th:href="@{/layout/left}"> 视频信息库</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list nav-active"><a href="#"><i class="fa fa-th-list"></i> <span>数据表</span></a>
+                    <ul class="sub-menu-list">
+                        <li class="active"><a th:href="@{/table/basic}"> 基本表</a></li>
+                        <li><a th:href="@{/table/dynamic}"> 动态表</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>附加页</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"> Profile</a></li>
+                        <li><a th:href="@{/extra/404}"> 4xx Error</a></li>
+                        <li><a th:href="@{/extra/500}"> 500 Error</a></li>
+                        <li><a th:href="@{/extra/lock}"> Lockscreen </a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/login}"><i class="fa fa-sign-in"></i> <span>登陆页</span></a></li>
+
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+        <!--toggle button start-->
+        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+        <!--toggle button end-->
+
+        <!--notification menu start -->
+        <div class="menu-right">
+            <ul class="notification-menu">
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img th:src="${session.user.faceImage}" alt="" />
+                        [[${session.user.getName()}]]
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li><a th:href="@{|/extra/profile/${session.user.id}|}"><i class="fa fa-user"></i>  Profile</a></li>
+                        <li><a th:href="@{/login}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                基本表
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a th:href="@{/index}">首 页</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-active">数据表</a>
+                </li>
+                <li class="active">基本表</li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-sm-6">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            用户表
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>头像</th>
+                                    <th>粉丝数</th>
+                                    <th>关注数</th>
+                                    <th>用户名</th>
+                                    <th>昵称</th>
+                                    <th>密码</th>
+                                    <th>获赞数</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user:${users}">
+                                    <td th:text="${user.id}"></td>
+                                    <td><img th:src="${user.faceImage}" alt="face_image" width="28px" height="28px"/></td>
+                                    <td th:text="${user.fansCounts}"></td>
+                                    <td th:text="${user.followCounts}"></td>
+                                    <td th:text="${user.name}"></td>
+                                    <td th:text="${user.nickname}"></td>
+                                    <td th:text="${user.pwd}"></td>
+                                    <td th:text="${user.receiveLikes}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-sm-6">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            BGM
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+
+                        <h2><a class="btn btn-sm btn-success" th:href="@{/layout/blank}">添加bgm</a></h2>
+
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>作者</th>
+                                    <th>音乐名</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="bgm:${bgms}">
+                                    <td th:text="${bgm.id}"></td>
+                                    <td th:text="${bgm.author}"></td>
+                                    <td th:text="${bgm.musicName}"></td>
+                                    <td ><audio th:src="${bgm.path}" controls loop></audio></td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary"
+                                           th:href="@{|/updateB/${bgm.id}|}">编辑</a><!--更新页跳转-->
+                                        <button class="btn btn-danger btn-sm" type="button"><a
+                                                th:href="@{/deleleBgm(id=${bgm.id})}"
+                                                style="text-decoration: none; color: white">删 除</a></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+<!--            这里 添加一个row 可以用来增加表格显示信息用-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            视频信息表
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                        </header>
+
+                        <h2><a class="btn btn-sm btn-success" th:href="@{/layout/boxed}">添加video</a></h2>
+
+                        <div class="panel-body">
+                            <table class="table  table-hover general-table">
+                                <thead>
+                                <tr>
+                                    <th> Id</th>
+                                    <th>audio_id</th>
+                                    <th>封面</th>
+                                    <th>创建时间</th>
+                                    <th>获赞数</th>
+                                    <th>视频描述</th>
+                                    <th>时长(s)</th>
+                                    <th>status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="video:${videos}">
+                                    <td th:text="${video.id}"></td>
+                                    <td th:text="${video.audioId}"></td>
+                                    <td><img th:src="${video.coverPath}" th:width="${video.videoWidth}+'p'+'x'" th:height="${video.videoHeight}+'p'+'x'"/></td>
+                                    <td th:text="${video.crateTime}"></td>
+                                    <td th:text="${video.likeCounts}"> </td>
+                                    <td th:text="${video.videoDesc}"></td>
+                                    <td th:text="${video.videoSeconds}+'s'">
+                                    </td>
+                                    <td><span class="label label-success label-mini">Normal</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+        <footer>
+            2021 &copy; Developed by <a href="http://www.mycodes.net/" target="_blank">dlu admin</a>
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+<script th:src="@{/js/jquery-ui-1.9.2.custom.min.js}"></script>
+<script th:src="@{/js/jquery-migrate-1.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/modernizr.min.js}"></script>
+<script th:src="@{/js/jquery.nicescroll.js}"></script>
+
+<!--common scripts for all pages-->
+<script th:src="@{/js/scripts.js}"></script>
+
+</body>
+</html>
