@@ -6,7 +6,6 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     properties:
-      # Java 持久化框架
       hibernate:
         hbm2ddl:
           auto: update
