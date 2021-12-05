@@ -2,7 +2,6 @@ spring:
   datasource:
     username: root
     password: 2018sql
-    # 192.168.99.100为linux虚拟机的ip地址，123456位docker中mysql镜像的密码
     url: jdbc:mysql://127.0.0.1:3306/spring_last_project?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
