@@ -1,9 +1,11 @@
 package com.dlu.controller;
 
 import com.dlu.pojo.Bgm;
+import com.dlu.pojo.Comments;
 import com.dlu.pojo.User;
 import com.dlu.pojo.Video;
 import com.dlu.service.BgmService;
+import com.dlu.service.CommentService;
 import com.dlu.service.UserService;
 import com.dlu.service.VideoService;
 import io.swagger.annotations.Api;
@@ -28,6 +30,8 @@ public class MainPageController {
     private VideoService videoService;
     @Autowired
     private BgmService bgmService;
+    @Autowired
+    private CommentService commentService;
 
     /**bgm添加页*/
     @RequestMapping(value = "/layout/blank")
@@ -141,8 +145,10 @@ public class MainPageController {
     public String dynamic(Model model){
         List<Video> videoList = videoService.findAll();
         List<Bgm> bgmList = bgmService.findAll();
+        List<Comments> commentsList = commentService.findAll();
         model.addAttribute("videos",videoList);
         model.addAttribute("bgms",bgmList);
+        model.addAttribute("comments",commentsList);
         return "dynamic_table";
     }
 
