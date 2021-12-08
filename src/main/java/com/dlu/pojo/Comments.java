@@ -1,7 +1,6 @@
 package com.dlu.pojo;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @author moonjay
@@ -19,7 +18,7 @@ public class Comments {
     @Column(nullable = false)
     private String comment;
     @Column(name = "create_time", nullable = false)
-    private Date createTime;
+    private String createTime;
 
     public Integer getId() {
         return id;
@@ -53,11 +52,22 @@ public class Comments {
         this.comment = comment;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "id=" + id +
+                ", fromUserId=" + fromUserId +
+                ", videoId=" + videoId +
+                ", comment='" + comment + '\'' +
+                ", createTime='" + createTime + '\'' +
+                '}';
     }
 }

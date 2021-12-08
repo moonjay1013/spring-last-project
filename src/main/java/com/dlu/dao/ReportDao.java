@@ -1,6 +1,6 @@
 package com.dlu.dao;
 
-import com.dlu.pojo.Comments;
+import com.dlu.pojo.UserReport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import javax.transaction.Transactional;
 
 @Transactional
-public interface CommentDao extends JpaRepository<Comments,Integer> {
+public interface ReportDao extends JpaRepository<UserReport,Integer> {
     @Modifying
-    @Query("update comments c set c.comment = ?1 where c.id = ?2")
-    void updateComment(String comment,Integer id);
+    @Query("update users_report r set r.content = ?1,r.title = ?2 where r.id=?3")
+    void updateReport(String content,String title,Integer id);
 }

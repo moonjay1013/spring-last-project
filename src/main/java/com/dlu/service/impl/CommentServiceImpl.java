@@ -18,4 +18,25 @@ public class CommentServiceImpl implements CommentService {
     public List<Comments> findAll() {
         return commentDao.findAll();
     }
+
+    @Override
+    public void addComment(Comments comments) {
+        commentDao.save(comments);
+    }
+
+    @Override
+    public void deleteComment(Integer id) {
+        Comments comments = commentDao.getById(id);
+        commentDao.delete(comments);
+    }
+
+    @Override
+    public void updateComment(String comment, Integer id) {
+        commentDao.updateComment(comment, id);
+    }
+
+    @Override
+    public Comments getById(Integer id) {
+        return commentDao.getById(id);
+    }
 }

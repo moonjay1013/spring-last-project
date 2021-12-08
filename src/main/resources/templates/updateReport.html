@@ -7,7 +7,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>Bgm更新</title>
+    <title>举报内容更新</title>
 
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
@@ -62,7 +62,7 @@
                 <li><a th:href="@{/index}"><i class="fa fa-home"></i> <span>首 页</span></a></li>
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-laptop"></i> <span>功能页</span></a>
                     <ul class="sub-menu-list">
-                        <li class="active"><a th:href="@{/layout/blank}"> Bgm管理</a></li>
+                        <li><a th:href="@{/layout/blank}"> Bgm管理</a></li>
                         <li><a th:href="@{/layout/boxed}"> 添加video</a></li>
                         <li><a th:href="@{/layout/left}"> 视频信息库</a></li>
                     </ul>
@@ -126,25 +126,17 @@
 
         <!--body wrapper start-->
         <!--编辑bgm-->
-        <form th:object="${bgm}">
-            <input th:value="${bgm.id}" id="ii" type="hidden">
+        <form th:object="${report}">
+            <input th:value="${report.id}" id="ii" type="hidden">
             <div class="form-group">
-                <label>音乐作者</label>
-                <input th:value="${bgm.author}" id="author" type="text" class="form-control"
-                       placeholder="author">
-
-            </div>
-
-            <div class="form-group">
-                <label>音乐名称</label>
-                <input th:value="${bgm.musicName}" id="musicname" type="text"
-                       class="form-control"
-                       placeholder="music_name">
-            </div>
-
-            <div class="form-group">
-                <label> 提交文件 </label>
-                <input type="file" id="bgm" th:value="${bgm.path}">
+                <label>举报内容</label>
+                <input th:value="${report.content}" id="con" type="text" class="form-control"
+                       placeholder="comment content">
+                <label>创建时间</label>
+                <p th:text="${report.createTime}" ><p>
+                <label>举报标题</label>
+                <input th:value="${report.title}" id="tit" type="text" class="form-control"
+                       placeholder="comment content">
             </div>
             <button type="submit" id="ch" class="btn btn-default">提交</button>
         </form>
@@ -177,10 +169,9 @@
         $("#ch").click(function () {
             // debugger
             var i = $("#ii").val();   //id
-            var m = $("#musicname").val();//author
-            var a = $("#author").val();
-            var bp = $("#bgm").val().substring(12, 40); //path
-            var url = "/updateBgm?path=" + bp + "&musicName=" + m + "&author=" + a + "&id=" + i;
+            var m = $("#con").val();
+            var t = $("#tit").val();
+            var url = "/updateReport?content="+ m +"&title="+t+ "&id=" + i;
             $.post(url, function (data) {
             });
             window.location.reload();

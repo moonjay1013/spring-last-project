@@ -1,7 +1,6 @@
 package com.dlu.pojo;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @author moonjay
@@ -23,5 +22,74 @@ public class UserReport {
     @Column(length = 64, nullable = false)
     private Integer uId;
     @Column(name = "create_time", nullable = false)
-    private Date createTime;
+    private String createTime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(Integer videoId) {
+        this.videoId = videoId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "UserReport{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", videoId=" + videoId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", uId=" + uId +
+                ", createTime='" + createTime + '\'' +
+                '}';
+    }
 }

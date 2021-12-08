@@ -186,7 +186,7 @@
                 <div class="col-sm-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            评论动态表 &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-sm btn-success" href="#">添加</a>
+                            评论动态表 &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-sm btn-success" th:href="@{/addC}">添加</a>
                             <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-times"></a>
@@ -214,9 +214,58 @@
                                         <td th:text="${comment.comment}"></td>
                                         <td>
                                             <a class="btn btn-sm btn-primary"
-                                               href="#">编辑</a><!--更新页跳转-->
+                                               th:href="@{|/updateC/${comment.id}|}">编辑</a><!--更新页跳转-->
                                             <button class="btn btn-danger btn-sm" type="button">
-                                                <a href="#" style="text-decoration: none; color: white">删 除</a>
+                                                <a th:href="@{/delComment(id=${comment.id})}" style="text-decoration: none; color: white">删 除</a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            举报信息表 &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-sm btn-success" th:href="@{/addR}">添加</a>
+                            <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <table  class="display table table-bordered table-striped" id="dynamic">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>标题</th>
+                                        <th>举报内容</th>
+                                        <th>举报时间</th>
+                                        <th>举报人id</th>
+                                        <th>被举报人id</th>
+                                        <th>举报人视频id</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="report:${reports}" class="gradeA">
+                                        <td th:text="${report.id}"></td>
+                                        <td th:text="${report.title}"></td>
+                                        <td th:text="${report.content}"></td>
+                                        <td th:text="${report.createTime}"></td>
+                                        <td th:text="${report.uId}"></td>
+                                        <td th:text="${report.userId}"></td>
+                                        <td th:text="${report.videoId}"></td>
+                                        <td>
+                                            <a class="btn btn-sm btn-primary"
+                                               th:href="@{|/updateR/${report.id}|}">编辑</a><!--更新页跳转-->
+                                            <button class="btn btn-danger btn-sm" type="button">
+                                                <a th:href="@{/delReport(id=${report.id})}" style="text-decoration: none; color: white">删 除</a>
                                             </button>
                                         </td>
                                     </tr>

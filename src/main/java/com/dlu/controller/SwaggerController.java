@@ -1,15 +1,13 @@
 package com.dlu.controller;
 
-import com.dlu.pojo.Bgm;
-import com.dlu.pojo.User;
-import com.dlu.pojo.Video;
+import com.dlu.pojo.*;
 import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@Api(tags = "使用swagger的 @ApiModel注解 须在controller 使用 @RequestBody 注解 否则无法显示models")
+@Api(tags = "使用swagger的@ApiModel 须使用@RequestBody 否则无法显示models")
 public class SwaggerController {
 
     @RequestMapping("user")
@@ -26,4 +24,10 @@ public class SwaggerController {
     public String hello3(@RequestBody Video video){
         return video.toString();
     }
+
+    @RequestMapping("report")
+    public String hello4(@RequestBody UserReport report){ return report.toString();}
+
+    @RequestMapping("comment")
+    public String hello5(@RequestBody Comments comment){ return comment.toString();}
 }
