@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: root
-    password: 2018sql
+    password: 2022sql
     url: jdbc:mysql://127.0.0.1:3306/spring_last_project?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
